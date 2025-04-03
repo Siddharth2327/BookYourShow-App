@@ -1,0 +1,4 @@
+mongodb+srv://Siddharth2302:YTZNopAQyp2lwZue@cluster0.zexdo6l.mongodb.net/BMS?retryWrites=true&w=majority&appName=Cluster0
+
+file name : BMS // Book My show
+Password : YTZNopAQyp2lwZue
