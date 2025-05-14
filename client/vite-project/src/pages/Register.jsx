@@ -1,48 +1,58 @@
-import React from 'react';
-import { Form, Input, Button, Card } from 'antd';
+import{ useState } from 'react';
+import { Form, Input, Button, Card, message } from 'antd';
 import './Auth.css';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { RegisterUser } from '../ApiCalls/users';
 
 const Register = () => {
-  const [useEmail, setUseEmail] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const registeredData = async (values) => {
+    try {
+      setLoading(true);
+      const response = await RegisterUser(values);
+      console.log("Server response", response); // response message from server which we already given in userroute
+
+      if(response.success) {
+        alert('User registered successfuly')  
+        // navigate to login page
+        navigate('/login')   
+      }
+      else{
+
+      }
+      if(!response) alert('User already exist') // to give the user alert message
+      
+    } catch (error) {
+      console.error("Registration error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="auth-container">
       <Card title="Hello Welcome!" className="auth-card">
-        <Form layout="vertical"> 
+        <Form layout="vertical" onFinish={registeredData}>
           <Form.Item 
-            label='Name'
-            name='name'
+            label='Name' 
+            name='name' 
             rules={[{ required: true, message: "Please enter your Name" }]}
           >
             <Input placeholder="Enter your name" />
           </Form.Item>
 
-          {useEmail ? (
-            <Form.Item 
+          <Form.Item
             className='email-num'
-              label='Email'
-              name='email'
-              rules={[{ required: true, message: "Please enter your Email id to proceed" }]}
-            >
-              <Input type="email" placeholder="Enter your email" />
-            </Form.Item>
-          ) : (
-            <Form.Item 
-            className='email-num'
-              label='Number'
-              name='number'
-              rules={[{ required: true, message: "Please enter your number" }]}
-            >
-              <Input placeholder="Enter your number" />
-            </Form.Item>
-          )}
-          <Form.Item>
-            <p onClick={() => setUseEmail(!useEmail)}>
-              Register using {useEmail ? 'Mobile' : 'Email'}
-            </p>
+            label='Email'
+            name='email'
+            rules={[{ required: true, message: "Please enter your Email id to proceed" }]}
+          >
+            <Input type="email" placeholder="Enter your email" />
           </Form.Item>
-          <Form.Item 
+
+          <Form.Item
             label='Password'
             name='password'
             rules={[{ required: true, message: "Please enter a Password" }]}
@@ -51,14 +61,14 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" block loading={loading}>
               Register
             </Button>
           </Form.Item>
 
           <Form.Item>
-            <p type="primary" htmlType="submit" block>
-              Aldready an user? <Link to='/login'>Login</Link>
+            <p>
+              Already a user? <Link to='/login'>Login</Link>
             </p>
           </Form.Item>
         </Form>
