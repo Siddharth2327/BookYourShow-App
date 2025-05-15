@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middlewares/authMiddleware');
+
 
 // Register route
 router.post('/register', async (req, res) => {
@@ -81,5 +83,22 @@ router.post("/login", async (req, res) => {
     });
   }
 });
+
+// token validation route
+router.get('/validate-user',authMiddleware, async(req,res)=>{
+  try{
+    const validuser = await userModel.findById(req.body.userId).select('-password') // neglecting the password and gettiing the remaining data
+    res.status(200).send({
+      success:true,
+      message:'User has been successfuly verified',
+      data:validuser
+    })
+  } catch(error){
+    res.status(401).send({
+      success:false,
+      error:`error while finding the valid user's data in the route ${error}`
+    })
+  }
+})
 
 module.exports = router;
