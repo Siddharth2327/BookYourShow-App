@@ -8,6 +8,7 @@ function WrapperProtect({children}) { // children represents the home which is p
         if(!localStorage.getItem('token')){
             navigate('/login')
         }
+        else navigate('/')
         // we are already on the home page if this component gets triggered so we dont need to add the else block to navigate to the homepage
     },[])
   return (

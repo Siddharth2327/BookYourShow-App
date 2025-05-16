@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './Auth.css';
 import { Form, Input, Button, Card } from 'antd';
 import { Link, useNavigate} from 'react-router-dom';
 import { LoginUser } from '../ApiCalls/users';
-import { GetCurrentUser } from "../ApiCalls/users"
+
 
 function Login() {
   const [loading, setLoading] = useState(false);
