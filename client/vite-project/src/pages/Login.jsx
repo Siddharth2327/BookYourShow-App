@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Auth.css';
 import { Form, Input, Button, Card } from 'antd';
 import { Link, useNavigate} from 'react-router-dom';
 import { LoginUser } from '../ApiCalls/users';
+import { GetCurrentUser } from "../ApiCalls/users"
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ function Login() {
       
       if(response.success) {
         localStorage.setItem("token", response.token)// this gets stored ion the local storage and can be used to login to the home page
-        navigate('/')
+        navigate('/');
       }
       else {
         alert("Unable to login")

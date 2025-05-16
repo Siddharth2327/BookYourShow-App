@@ -87,14 +87,14 @@ router.post("/login", async (req, res) => {
 // token validation route
 router.get('/validate-user',authMiddleware, async(req,res)=>{
   try{
-    const validuser = await userModel.findById(req.body.userId).select('-password') // neglecting the password and gettiing the remaining data
-    res.status(200).send({
+    const validuser = await userModel.findById(req.user).select('-password') // neglecting the password and gettiing the remaining data
+    return res.status(200).send({
       success:true,
-      message:'User has been successfuly verified',
+      message:'User has been successfuly verified and has access to the protected route',
       data:validuser
     })
   } catch(error){
-    res.status(401).send({
+    return res.status(401).send({
       success:false,
       error:`error while finding the valid user's data in the route ${error}`
     })

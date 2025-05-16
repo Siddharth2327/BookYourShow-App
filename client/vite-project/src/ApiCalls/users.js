@@ -19,3 +19,13 @@ export const LoginUser = async(values)=>{
     console.log(error);
   }
 };
+
+// get valid user by for checking the bearer token
+export const GetCurrentUser = async()=>{
+  try{
+    const response = await axiosInstance.get('http://localhost:8000/api/users/validate-user')
+    return response.data
+  } catch(error){
+    console.log(error)
+  }
+};

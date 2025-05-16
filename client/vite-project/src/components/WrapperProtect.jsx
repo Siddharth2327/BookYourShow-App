@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function WrapperProtect({children}) { // HomeChild is the home which is passed as the child
+function WrapperProtect({children}) { // children represents the home which is passed as the child
     const navigate = useNavigate();
     useEffect(()=>{
         if(!localStorage.getItem('token')){
