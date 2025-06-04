@@ -5,7 +5,7 @@ module.exports = function(req, res, next){
         const token = req.headers.authorization.split(" ")[1]; // since the word "bearer" is present with the token in the authorization header we are splitting using split and taking only the token
         const verifiedtoken = jwt.verify(token, "bookmyshow") // verifying using the secret keyword
         // with this verified token we can get the userId and can access all of his details
-        console.log(verifiedtoken)
+        // console.log(verifiedtoken)
          req.user = verifiedtoken.userId // setting up the userId taken form the jwt to the req body
         next()
     } catch(error){

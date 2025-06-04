@@ -1,4 +1,4 @@
-import { axiosInstance } from "./index.js";
+import { axiosInstance } from "./index.js"
 
 export const RegisterUser = async (values) => {
   try {
@@ -6,7 +6,7 @@ export const RegisterUser = async (values) => {
     console.log('User Registered');
     return response.data
   } catch (error) {
-    console.log('Registration error:', error.response?.data || error.message);
+    console.log('Registration error:', error);
   }
 };
 
@@ -16,7 +16,7 @@ export const LoginUser = async(values)=>{
     console.log('login successful');
     return response.data
   } catch(error){
-    console.log(error);
+    console.log('Login Error ',error);
   }
 };
 
@@ -24,8 +24,9 @@ export const LoginUser = async(values)=>{
 export const GetCurrentUser = async()=>{
   try{
     const response = await axiosInstance.get('http://localhost:8000/api/users/validate-user')
+    // console.log(response.data)
     return response.data
   } catch(error){
-    console.log(error)
+    console.log('Error while verifying valid user ',error)
   }
 };
