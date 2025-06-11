@@ -82,6 +82,10 @@ function WrapperProtect({children}) { // children represents the home which is p
         // we are already on the home page if this component gets triggered so we don't need to add the else block to navigate to the homepage
     },[getValidUser, navigate])
     
+
+  // "user && " => if the user is there then it shows the complete layout in the return statement  
+  // this solves the issue of the user not being there when the page is loaded
+  // after there is a user value in the state then the layout is shown
   return (
     user && (
       <>
