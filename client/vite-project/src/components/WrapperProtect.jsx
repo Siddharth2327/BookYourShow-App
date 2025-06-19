@@ -19,13 +19,20 @@ function WrapperProtect({children}) { // children represents the home which is p
     const dispatch = useDispatch();
     const {user} = useSelector((state)=> state.user);
 
+    const handlemenuclicks = (e)=>{
+      if(e.key == "Home"){
+        navigate('/');
+      }
+    }
     const navitems = [
       {
+        key:"Home",
         label: "Home",
         icon: <HomeOutlined />,
       },
 
       {
+        key:"user-menu",
         label :`${user ? user.name : ""}`, // check for the user name if available set the name or else an empty space (null)
         icon : <UserOutlined/>,
         children:[
@@ -34,12 +41,12 @@ function WrapperProtect({children}) { // children represents the home which is p
               <span
               onClick={()=>{
                 if(user.role === 'admin'){
-                  navigate('/')
+                  navigate('/admin')
                 }
                 else if(user.role === 'partner'){
-                  navigate('/')
+                  navigate('/partner')
                 }
-                else navigate('/')
+                else navigate('/user')
               }}
               >
               My Profile
@@ -48,6 +55,7 @@ function WrapperProtect({children}) { // children represents the home which is p
             icon:<ProfileOutlined/>,
           },
           {
+            key:"logout",
             label:(
               <Link
               to="/login"
@@ -104,7 +112,7 @@ function WrapperProtect({children}) { // children represents the home which is p
             <h3 className="demo-logo text-white m-0" style={{ color: "white" }}>
               Book My Show
             </h3>
-            <Menu theme="dark" mode="horizontal" items={navitems} />
+            <Menu theme="dark" mode="horizontal" items={navitems} onClick={handlemenuclicks}/>
           </Header>
           <div style={{ padding: 24, minHeight: 380, background: "#fff" }}>
             {children}
