@@ -25,10 +25,11 @@ const movieSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    // releaseDate:{
-    //     type:Date,
-    //     required:true,
-    // },
+    releaseDate:{
+        type:Date,
+        required:true,
+        default:"2025-02-23"
+    },
     poster:{
         type:String, 
         required:true,

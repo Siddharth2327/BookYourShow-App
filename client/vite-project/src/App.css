@@ -1,0 +1,31 @@
+:root {
+    --ds-dark-bg: #1a1a1a;
+    --ds-card-bg: #2d2d2d;
+    --ds-primary: #6e48aa;
+    --ds-secondary: #9d50bb;
+    --ds-text: #e0e0e0;
+    --ds-text-light: #a0a0a0;
+    --ds-border: #3a3a3a;
+}
+
+button{
+    background: linear-gradient(to right, var(--ds-primary), var(--ds-secondary)) !important;
+    border: none !important;
+    color: white !important;    
+}
+
+button:hover{
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.ant-btn {
+  background: linear-gradient(to right, var(--ds-primary), var(--ds-secondary)) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.ant-btn:hover{
+    opacity: 0.9;
+    transform: translateY(-1px);
+}

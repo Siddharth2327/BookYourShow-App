@@ -17,16 +17,18 @@
 
 /* Page title */
 .home-title {
-  color: var(--ds-text);
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 3rem;
-  background: linear-gradient(45deg, var(--ds-primary), var(--ds-secondary));
+}
+.home-title span{
+  background: linear-gradient(45deg, var(--ds-primary), white, var(--ds-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 /* Movies grid container */
 .movies-grid {

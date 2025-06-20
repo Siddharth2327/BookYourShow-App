@@ -9,7 +9,7 @@ import "./Home.css";
 const { Meta } = Card;
 const { Search } = Input;
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 8;
 
 const Home = () => {
   const [allMovies, setAllMovies] = useState([]);
@@ -57,7 +57,9 @@ const Home = () => {
   return (
     <div className="home-container">
       <ToastContainer />
-      <h1 className="home-title">Movies</h1>
+      <div className="home-title">
+        <span>Movies</span>
+      </div>
 
       {/* Search Input */}
       <div className="search-container">

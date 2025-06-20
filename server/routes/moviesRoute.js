@@ -40,27 +40,28 @@ router.get('/get-all-movies', async(req, res)=>{
 // update movie
 router.put('/update-movie', async(req, res)=>{
     try{
-        const movie = await movieModel.findByIdAndUpdate(req.body._id, req.body, {new:true}) // new:true will send the latest updated movie to the data
+        const movie = await movieModel.findByIdAndUpdate(req.body._id, req.body, {new:true})
+        
         if(!movie){
-            res.status(404).send({
+            return res.status(404).send({  // Add 'return' here
                 success:false,
                 message:"Movie not found",
             })
         }
+        
         res.status(200).send({
             success:true,
-            message:'Movie has been successfully updates',
+            message:'Movie has been successfully updated',  // Fixed typo: "updates" -> "updated"
             data:movie
         })
 
     } catch(error){
-        res.status(401).send({
+        res.status(500).send({  // Changed from 401 to 500 for server errors
             success:false,
             message:error.message,
         })
     }
 })
-
 
 
 // fetch single movie and all movies

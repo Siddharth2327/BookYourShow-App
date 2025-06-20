@@ -7,6 +7,7 @@ import Partner from './pages/Partner'
 import UserProfile from './pages/UserProfile'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import WrapperProtect from './components/WrapperProtect.jsx'
+import MovieForm from './pages/Admin/MovieForm.jsx'
 function App() {
   
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/admin" element={<WrapperProtect><Admin/></WrapperProtect>}/>
       <Route path="/partner" element={<WrapperProtect><Partner/></WrapperProtect>}/>
       <Route path="/user" element={<WrapperProtect><UserProfile/></WrapperProtect>}/>
+      
     </Routes>
     </BrowserRouter>
     
