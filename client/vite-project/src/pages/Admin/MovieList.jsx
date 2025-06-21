@@ -9,7 +9,9 @@ import dayjs from 'dayjs';
 function MovieList() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
-        const getMovies = async () => {
+        getMovies();
+    }, []);
+    const getMovies = async () => {
             try {
                 const response = await GetAllMovies();
                 setMovies(response.data.data);
@@ -17,8 +19,6 @@ function MovieList() {
                 console.error("Error while fetching movies:", err);
             }
         };
-        getMovies();
-    }, [movies]);
 
 
     // handling edit form
@@ -35,6 +35,7 @@ function MovieList() {
             const response = await UpdateMovie(updatedMovie);
             setIsEditModal(false);
             message.success("Movie updated");
+            getMovies();
         } catch(err){
             message.error("error while adding movie")
             console.log(err)
@@ -44,8 +45,13 @@ function MovieList() {
 
     // handle delete
     const handleDelete = async (id) => {    // gets the movie_id alone which is enough to delete the movie
-        console.log("Delete clicked for ", id)
-        const response = await DeleteMovie(id);
+        try{
+            const response = await DeleteMovie(id);
+            console.log("Movie deleted")
+            getMovies();
+        } catch(err){
+            console.log("Error while deleting the movie", err)   
+        }
     }
 
     // handling add new movie form 
@@ -64,6 +70,7 @@ function MovieList() {
             const response = await AddNewMovie(formData);
             message.success("Movie added successfully!");
             setIsModalOpen(false);
+            getMovies()
         } catch (error) {
             message.error("Failed to add movie.");
             console.error(error);
@@ -130,7 +137,7 @@ function MovieList() {
         {
             title: "Action",
             key: "action",
-            render: (_, record) => ( // record is the keyword for the movie data of that particular row 
+            render: (text, record) => ( // record is the keyword for the movie data of that particular row 
                 <Space size="middle">
                     <a onClick={() => handleEdit(record)}>Edit</a>
                     <a
