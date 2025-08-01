@@ -29,3 +29,26 @@ button:hover{
     opacity: 0.9;
     transform: translateY(-1px);
 }
+
+
+
+/* admin file */
+/* Change tab text and active tab color */
+.custom-tabs .ant-tabs-tab {
+  color: #6e48aa; /* Unselected tab text */
+  font-weight: 500;
+  font-family: monospace;
+  
+}
+.custom-tabs .ant-tabs-tab:hover{
+    color: #0e0014 !important;
+}
+
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #9d50bb !important; /* Active tab text */
+}
+
+/* Change ink bar (underline) color */
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #9d50bb;
+}

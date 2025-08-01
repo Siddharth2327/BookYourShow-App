@@ -17,10 +17,10 @@ const theatreSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    // owner:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:'User'
-    // },
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,  // inbuilt , method in mongoose to access the object id directly
+        ref:'User' // this will make a connection between the collections
+    },
     isActive:{
         type:Boolean,
         default:false,

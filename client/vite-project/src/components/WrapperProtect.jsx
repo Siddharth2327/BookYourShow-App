@@ -33,7 +33,7 @@ function WrapperProtect({children}) { // children represents the home which is p
 
       {
         key:"user-menu",
-        label :`${user ? user.name : ""}`, // check for the user name if available set the name or else an empty space (null)
+        label: `${user ? user.name : ""}`, // check for the user name if available set the name or else an empty space (null)
         icon : <UserOutlined/>,
         children:[
           {
@@ -99,7 +99,6 @@ function WrapperProtect({children}) { // children represents the home which is p
       <>
         <Layout>
           <Header
-            className="d-flex justify-content-between"
             style={{
               position: "sticky",
               top: 0,
@@ -107,12 +106,42 @@ function WrapperProtect({children}) { // children represents the home which is p
               width: "100%",
               display: "flex",
               alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 24px",
             }}
           >
-            <h3 className="demo-logo text-white m-0" style={{ color: "white" }}>
+            <h3 className="demo-logo text-white m-0" style={{ 
+              color: "white",
+              marginRight: "auto",
+              minWidth: "150px"
+            }}>
               Book My Show
             </h3>
-            <Menu theme="dark" mode="horizontal" items={navitems} onClick={handlemenuclicks}/>
+            <Menu 
+              theme="dark" 
+              mode="horizontal" 
+              items={navitems} 
+              onClick={handlemenuclicks}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                justifyContent: "flex-end",
+                border: "none"
+              }}
+              className="custom-menu"
+            />
+            <style jsx>{`
+              .custom-menu .ant-menu-item:hover,
+              .custom-menu .ant-menu-submenu:hover,
+              .custom-menu .ant-menu-item-selected,
+              .custom-menu .ant-menu-submenu-selected {
+                background-color: transparent !important;
+              }
+              .custom-menu .ant-menu-item::after,
+              .custom-menu .ant-menu-submenu::after {
+                display: none !important;
+              }
+            `}</style>
           </Header>
           <div style={{ padding: 24, minHeight: 380, background: "#fff" }}>
             {children}

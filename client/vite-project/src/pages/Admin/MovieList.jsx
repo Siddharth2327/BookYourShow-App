@@ -12,13 +12,13 @@ function MovieList() {
         getMovies();
     }, []);
     const getMovies = async () => {
-            try {
-                const response = await GetAllMovies();
-                setMovies(response.data.data);
-            } catch (err) {
-                console.error("Error while fetching movies:", err);
-            }
-        };
+        try {
+            const response = await GetAllMovies();
+            setMovies(response.data.data);
+        } catch (err) {
+            console.error("Error while fetching movies:", err);
+        }
+    };
 
 
     // handling edit form
@@ -29,28 +29,28 @@ function MovieList() {
         isSelectedMovie(record);
         setIsEditModal(true);
     }
-    const handleEditFormSubmit = async (updatedMovie)=>{
-        try{
+    const handleEditFormSubmit = async (updatedMovie) => {
+        try {
             // console.log("Updated movie data ", updatedMovie)
             const response = await UpdateMovie(updatedMovie);
             setIsEditModal(false);
             message.success("Movie updated");
             getMovies();
-        } catch(err){
+        } catch (err) {
             message.error("error while adding movie")
             console.log(err)
         }
-        
+
     }
 
     // handle delete
     const handleDelete = async (id) => {    // gets the movie_id alone which is enough to delete the movie
-        try{
+        try {
             const response = await DeleteMovie(id);
             console.log("Movie deleted")
             getMovies();
-        } catch(err){
-            console.log("Error while deleting the movie", err)   
+        } catch (err) {
+            console.log("Error while deleting the movie", err)
         }
     }
 
@@ -112,39 +112,46 @@ function MovieList() {
             title: "Rating",
             dataIndex: "rating",
             key: "rating",
+            align:"center"
         },
         {
             title: "Duration (min)",
             dataIndex: "duration",
             key: "duration",
+            align:"center"
         },
         {
             title: "Genre",
             dataIndex: "genre",
             key: "genre",
+            align:"center"
         },
         {
             title: "Language",
             dataIndex: "language",
             key: "language",
+            align:"center"
         },
         {
-            title:"Release-Date",
-            dataIndex:"releaseDate",
-            key:"releaseDate",
-            render:(date)=> dayjs(date).format("DD-MM-YYYY")
+            title: "Release-Date",
+            dataIndex: "releaseDate",
+            key: "releaseDate",
+            align:"center",
+            width:120,
+            render: (date) => dayjs(date).format("DD-MM-YYYY")
         },
         {
             title: "Action",
             key: "action",
-            render: (text, record) => ( // record is the keyword for the movie data of that particular row 
-                <Space size="middle">
+            align:"center",
+            render: (text, record) => (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <a onClick={() => handleEdit(record)}>Edit</a>
                     <a
                         style={{ color: "red" }}
                         onClick={() => handleDelete(record._id)}>Delete</a>
-                </Space>
-            ),
+                </div>
+            )
         },
     ]
 
@@ -171,13 +178,16 @@ function MovieList() {
                 title="Edit Movie"
                 closable={{ 'aria-label': 'Custom Close Button' }}
                 open={isEditModalOpen}
-                onOk={()=>(setIsEditModal(false))}
-                onCancel={()=>(setIsEditModal(false))} 
+                onOk={() => (setIsEditModal(false))}
+                onCancel={() => (setIsEditModal(false))}
                 footer={null} // since i gave footer is null the ok and cancel button goes off
             >
-                <EditMovieForm onFinish={handleEditFormSubmit} movieData={selectedMovie}/>
+                <EditMovieForm onFinish={handleEditFormSubmit} movieData={selectedMovie} />
             </Modal>
-            <Table columns={columns} dataSource={movies} rowKey="_id" />
+            <Table
+                columns={columns}
+                dataSource={movies}
+                rowKey="_id" />
         </>
     )
 }

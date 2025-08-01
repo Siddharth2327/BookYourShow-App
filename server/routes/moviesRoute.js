@@ -10,7 +10,8 @@ router.post('/add-movie', async(req, res) => {
         await newMovie.save()
         res.status(200).send({
             success:true,
-            message: 'New movie has been added!'
+            message: 'New movie has been added!',
+            data: newMovie
         })   
     } catch(error){
         res.status(401).send({
