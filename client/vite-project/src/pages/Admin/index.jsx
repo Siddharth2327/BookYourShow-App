@@ -20,8 +20,7 @@ function Admin() {
     },
   ];
   return (
-    <div>
-      <h1 style={{display:"flex", justifyContent:"center", fontFamily:"monospace" }}>You are the&nbsp;<span style={{color:"#9d50bb"}}>ADMIN</span></h1>
+    <div><h1 style={{display:"flex", justifyContent:"center", fontFamily:"monospace" }}>You are the&nbsp;<span style={{color:"#9d50bb"}}>ADMIN</span></h1>
       <Tabs
       className="custom-tabs" 
       defaultActiveKey="1" 
