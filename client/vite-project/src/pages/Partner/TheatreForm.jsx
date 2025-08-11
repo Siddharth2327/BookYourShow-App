@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber, Select, Space } from 'antd';
+import { Button, Form, Input, Space } from 'antd';
 import { useEffect } from 'react';
 
 const layout = {
