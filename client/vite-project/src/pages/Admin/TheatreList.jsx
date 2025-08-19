@@ -136,13 +136,7 @@ function TheatreList() {
         dataSource={theatres}
         rowKey="_id"
         loading={loading}
-        pagination={{
-          pageSize: 10,
-          showSizeChanger: true,
-          showQuickJumper: true,
-          showTotal: (total, range) => 
-            `${range[0]}-${range[1]} of ${total} theatres`
-        }}
+        
       />
     </>
   )

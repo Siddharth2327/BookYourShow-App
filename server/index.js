@@ -4,6 +4,7 @@ const dbconfig = require('./config/dbconfig');
 const userRoute = require('./routes/userRoute');
 const movieRoute = require('./routes/moviesRoute');
 const theatreRoute = require("./routes/theatreRoute");
+const showRoute = require("./routes/showRoute");
 
 const cors = require('cors');
 app.use(cors({origin:'*'})) // allow all origins and make sure the cors middleware is used above all the routes
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/users', userRoute);
 app.use('/api/movies', movieRoute);
 app.use('/api/theatres', theatreRoute);
+app.use('/api/shows', showRoute);
 
 
 app.listen('8000', ()=>{
