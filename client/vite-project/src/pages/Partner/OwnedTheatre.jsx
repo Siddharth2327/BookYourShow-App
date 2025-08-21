@@ -5,15 +5,16 @@ import { AddNewTheatre, UpdateTheatre } from '../../ApiCalls/theatres';
 import { useSelector } from 'react-redux';
 import { GetTheatresByOwner } from '../../ApiCalls/theatres';
 import { DeleteTheatre } from '../../ApiCalls/theatres';
+import ShowModalForm from './ShowModalForm';
 
 
 function OwnedTheatre() {
     const {user} = useSelector ((state)=> state.user);
-    console.log(user._id)
     const [Alltheatres, setAllTheatres] = useState();
     const [selectedTheatre, setSelectedTheatre] = useState(null);
     const [isFormModalOpen, setFormModal] = useState(false);
     const [TheatreFormState, setTheatreFormState] = useState("add");
+    const [isShowModalOpen, setShowModalOpen] = useState(false)
 
     const GetTheatres = async ()=>{
         const response = await GetTheatresByOwner(user._id);
@@ -70,12 +71,15 @@ function OwnedTheatre() {
         {
             title: "Action",
             key: "action",
-            render: (text, record) => ( // record is the keyword for the movie data of that particular row 
+            render: (text, data) => ( // data is the keyword for the movie data of that particular row 
                 <div style={{display:"flex", flexDirection:"column", gap:"6px"}}>
-                    <a onClick={() => handleEdit(record)}>Edit</a>
+                    <a onClick={() => handleEdit(data)}>Edit</a>
                     <a
                         style={{ color: "red" }}
-                        onClick={() => handleDelete(record._id)}>Delete</a>
+                        onClick={() => handleDelete(data._id)}>Delete
+                    
+                    </a>
+                    {data.isActive && <Button onClick={()=>{setShowModalOpen(true); setSelectedTheatre(data)}}>+ Shows</Button>}    
                 </div>
             ),
         },
@@ -154,6 +158,7 @@ function OwnedTheatre() {
             >
                 <TheatreForm onAdd={onAdd} onEdit={onEdit} formState={TheatreFormState} selectedTheatre={selectedTheatre} />
             </Modal>
+            {isShowModalOpen && <ShowModalForm isShowModalOpen = {isShowModalOpen} setShowModalOpen = {setShowModalOpen } selectedTheatre = {selectedTheatre}/>}
             <Table columns={columns} dataSource={Alltheatres} rowKey="_id" />
         </>
     )
