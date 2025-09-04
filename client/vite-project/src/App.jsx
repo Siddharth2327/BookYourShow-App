@@ -7,7 +7,8 @@ import Partner from './pages/Partner'
 import UserProfile from './pages/UserProfile'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import WrapperProtect from './components/WrapperProtect.jsx'
-import MovieForm from './pages/Admin/MovieForm.jsx'
+// import MovieForm from './pages/Admin/MovieForm.jsx'
+import SingleMovie from './pages/SingleMovie.jsx'
 function App() {
   
 
@@ -20,7 +21,8 @@ function App() {
       <Route path="/" element={<WrapperProtect><Home/></WrapperProtect>}/>
       <Route path="/admin" element={<WrapperProtect><Admin/></WrapperProtect>}/>
       <Route path="/partner" element={<WrapperProtect><Partner/></WrapperProtect>}/>
-      <Route path="/user" element={<WrapperProtect><UserProfile/></WrapperProtect>}/>
+      <Route path="/user" element={<WrapperProtect><UserProfile/></WrapperProtect>}/> 
+      <Route path="/movie/:id" element={<WrapperProtect><SingleMovie/></WrapperProtect>}/>
       
     </Routes>
     </BrowserRouter>

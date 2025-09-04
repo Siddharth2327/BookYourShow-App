@@ -1,0 +1,68 @@
+.single-movie-container {
+  margin: 32px; /* some padding for your page */
+  max-width: 1000px;
+  background: #fff;
+  
+}
+
+.single-movie-row {
+  margin-bottom: 24px;
+}
+
+.single-movie-image-col {
+  text-align: center;
+}
+
+.single-movie-img {
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.single-movie-detail-col h1 {
+  margin-bottom: 12px;
+}
+
+.single-movie-date-row {
+  margin-top: 20px;
+  gap: 16px;
+}
+
+.single-movie-date-input {
+  min-width: 180px;
+  margin-left: 10px;
+}
+
+.single-movie-no-theatres {
+  text-align: center;
+  margin: 40px 0;
+  color: #1890ff;
+}
+
+.single-movie-theatres-list {
+  margin-top: 32px;
+}
+
+.single-movie-theatre-item {
+  margin-bottom: 24px;
+}
+
+.single-movie-show-ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.single-movie-show-li {
+  background: #e6f7ff;
+  border-radius: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.single-movie-show-li:hover {
+  background: #bae7ff;
+}

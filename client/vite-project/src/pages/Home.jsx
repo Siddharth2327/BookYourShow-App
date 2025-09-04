@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,} from "react";
 import { GetAllMovies } from "../ApiCalls/movies";
 import { Card, Input, Pagination, Skeleton, message } from "antd";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
+import {useNavigate} from 'react-router-dom'
 import "react-toastify/dist/ReactToastify.css";
 import "./Home.css";
+import moment from "moment";
+
 
 const { Meta } = Card;
 const { Search } = Input;
@@ -17,6 +20,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   // Fetch movies on mount
   useEffect(() => {
@@ -100,6 +104,9 @@ const Home = () => {
                   className="movie-card"
                   cover={
                     <img
+                    onClick={()=>{
+                      navigate(`/movie/${movieObj._id}?date=${moment().format("YYYY-MM-DD")}`)
+                    }}
                       alt={`${movieObj.title} Poster`}
                       src={movieObj.poster}
                       className="movie-poster"

@@ -44,3 +44,13 @@ export const UpdateMovie = async (values) => {
         console.log("Error while updating the movie ", err.message)
     }
 }
+
+// get single movie
+export const getMovieById = async (id) => {
+    try{
+        const response = await axiosInstance.get(`http://localhost:8000/api/movies/movie/${id}`)
+        return response.data;
+    }catch(err){
+        return err.response
+    }
+}
