@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Table, Button, message } from 'antd'
 import { GetAllTheatresForAdmin } from '../../ApiCalls/theatres';
 import { UpdateTheatre } from '../../ApiCalls/theatres'
 
