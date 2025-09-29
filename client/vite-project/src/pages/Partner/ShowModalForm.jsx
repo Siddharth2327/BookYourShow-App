@@ -17,7 +17,7 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
-import { GetAllMovies } from "../../apiCalls/movies";
+import { GetAllMovies } from "../../ApiCalls/movies";
 // import {
 //     addShow,
 //     deleteShow,

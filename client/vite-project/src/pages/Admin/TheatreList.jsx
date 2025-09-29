@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetAllTheatresForAdmin } from '../../ApiCalls/theatres';
 import { UpdateTheatre } from '../../ApiCalls/theatres'
+import { Table, Button } from 'antd';
 
 function TheatreList() {
   const [theatres, setTheatres] = useState([]);
